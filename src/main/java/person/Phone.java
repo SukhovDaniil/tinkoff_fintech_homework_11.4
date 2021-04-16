@@ -2,9 +2,19 @@ package person;
 
 public class Phone {
 
-    private final String number;
+    private String number;
 
-    public Phone(final String number) {
+    /**
+     * @return Телефонный номер.
+     */
+    public String getNumber() {
+        return number;
+    }
+
+    /**
+     * @param number Телефонный номер.
+     */
+    public void setNumber(final String number) {
         this.number = number;
     }
 
