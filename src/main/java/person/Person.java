@@ -4,36 +4,17 @@ import person.appearance.Appearance;
 
 public class Person {
 
-    private final String id;
-    private final String lastName;
-    private final String firstName;
-    private final String middleName;
-    private final Physical phys;
-    private final Appearance appearance;
-    private final Phone phone;
-
-    public Person(final String id,
-                  final String lastName,
-                  final String firstName,
-                  final String middleName,
-                  final Physical phys,
-                  final Appearance appearance,
-                  final Phone phone) {
-        this.id = id;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.phys = phys;
-        this.appearance = appearance;
-        this.phone = phone;
-    }
-
+    private String id;
+    private FullName fullName;
+    private Physical phys;
+    private Appearance appearance;
+    private Phone phone;
 
     @Override
     public final String toString() {
         final StringBuilder sb = new StringBuilder()
                 .append(id).append("\n")
-                .append(String.format("%1$s %2$s %3$s", lastName, firstName, middleName)).append("\n")
+                .append(this.fullName).append("\n")
                 .append(phys).append("\n")
                 .append(appearance).append("\n");
         if (phone != null) {
@@ -42,5 +23,73 @@ public class Person {
             sb.append("Телефона нет");
         }
         return sb.toString();
+    }
+
+    public static class Builder {
+        private String id;
+        private FullName fullName;
+        private Physical phys;
+        private Appearance appearance;
+        private Phone phone;
+
+        /*
+         * Идентификатор является обязательным, т.к. может существовать человек без инициалов, физических данных
+         * и пр. (например при регистрации новорожденного перечисленные параметры могут быть ещё в процессе уточнения,
+         * но запись необходимо создать и задать ей уникальный идентификатор)
+         */
+        public Builder(final String id) {
+            this.id = id;
+        }
+
+        /**
+         * @param fullname ФИО.
+         * @return Объект билдера.
+         */
+        public Builder setFullName(final FullName fullname) {
+            this.fullName = fullname;
+            return this;
+        }
+
+        /**
+         * @param physical Физические данные: возраст, вес, рост.
+         * @return Объект билдера.
+         */
+        public Builder setPhysical(final Physical physical) {
+            this.phys = physical;
+            return this;
+        }
+
+        /**
+         * @param appearanceData Внешность: цвет глаз, длину и цвет волос (если есть).
+         * @return Объект билдера.
+         */
+        public Builder setAppearance(final Appearance appearanceData) {
+            this.appearance = appearanceData;
+            return this;
+        }
+
+        /**
+         * @param phoneNumber Номер телефона.
+         * @return Объект билдера.
+         */
+        public Builder setPhone(final Phone phoneNumber) {
+            this.phone = phoneNumber;
+            return this;
+        }
+
+        /**
+         * Завершает сборку объекта персоны.
+         *
+         * @return Объект типа Person.
+         */
+        public Person build() {
+            final Person person = new Person();
+            person.id = this.id;
+            person.fullName = this.fullName;
+            person.phys = this.phys;
+            person.appearance = this.appearance;
+            person.phone = this.phone;
+            return person;
+        }
     }
 }

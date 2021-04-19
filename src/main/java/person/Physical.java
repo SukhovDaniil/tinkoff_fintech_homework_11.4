@@ -2,13 +2,49 @@ package person;
 
 public class Physical {
 
-    private final int age;
-    private final int weight;
-    private final double height;
+    private int age;
+    private int weight;
+    private double height;
 
-    public Physical(final int age, final int weight, final double height) {
+    /**
+     * @return Возраст.
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * @return Вес.
+     */
+    public int getWeight() {
+        return weight;
+    }
+
+    /**
+     * @return Рост.
+     */
+    public double getHeight() {
+        return height;
+    }
+
+    /**
+     * @param age Возраст.
+     */
+    public void setAge(final int age) {
         this.age = age;
+    }
+
+    /**
+     * @param weight Вес.
+     */
+    public void setWeight(final int weight) {
         this.weight = weight;
+    }
+
+    /**
+     * @param height Рост.
+     */
+    public void setHeight(final double height) {
         this.height = height;
     }
 

@@ -4,11 +4,34 @@ import person.appearance.hair.Hair;
 
 public class Appearance {
 
-    private final String eyes;
-    private final Hair hair;
+    private EyesColor eyes;
+    private Hair hair;
 
-    public Appearance(final String eyes, final Hair hair) {
+    /**
+     * @return Объект типа Hair.
+     */
+    public Hair getHair() {
+        return hair;
+    }
+
+    /**
+     * @return Объект типа EyesColor.
+     */
+    public EyesColor getEyes() {
+        return eyes;
+    }
+
+    /**
+     * @param eyes Цвет глаз персоны.
+     */
+    public void setEyes(final EyesColor eyes) {
         this.eyes = eyes;
+    }
+
+    /**
+     * @param hair Волосы (цвет и тип)
+     */
+    public void setHair(final Hair hair) {
         this.hair = hair;
     }
 
